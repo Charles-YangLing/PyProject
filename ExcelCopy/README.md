@@ -31,7 +31,10 @@ Newexcelsheet.write(hang, 11, xlwt.Formula(gongshi),Copyexcel[Copyexcels.cell_xf
 - 导出时注意包是否会一同导出 Pycharm的包可能会找不到位置所以导出时要加入python目录下的第三方库模板目录路径 site-packages。
 
 ```
-pyinstaller example.py -F -p C:/python/lib/site-packages
+pyinstaller example.py -F -p C:/python/lib/site-packages  例子
+
+pyinstaller ExcelCopy.py -F -p  F:\text\Lib\site-packages  实例
+
 ```
 
 
