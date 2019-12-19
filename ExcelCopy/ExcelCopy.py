@@ -106,10 +106,13 @@ while(hang < nrows):
         lie+=1
     hang += 1
     if hang == nrows:
-        gongshi2 = 'SUM(L4: L64)'.replace('64', str(hang-1))
-        gongshi3 = 'SUM(C4: C64)'.replace('64', str(hang-1))
-        Newexcelsheet.write(hang-1, 11, xlwt.Formula(gongshi2),Copyexcel[Copyexcels.cell_xf_index(hang-1, 11)])
-        Newexcelsheet.write(hang - 1, 2, xlwt.Formula(gongshi3), Copyexcel[Copyexcels.cell_xf_index(hang - 1, 2)])
+        dic = {0:'A',1:'B',2:'C',3:'D',4:'E',5:'F',6:'G',7:'H',8:'I',9:'J',10:'K',11:'L',12:'M'}
+        lie = 2
+        while lie < 12:
+            gongshi2 ='SUM(L4: L64)'.replace('L', dic[lie])
+            gongshi3 = gongshi2.replace('64', str(hang-1))
+            lie += 1
+            Newexcelsheet.write(hang - 1, lie-1, xlwt.Formula(gongshi3), Copyexcel[Copyexcels.cell_xf_index(hang - 1, 11)])
 workbook.release_resources()  #关闭模板文件
 Newexcel.save("羽毛球经费周统计表"+datetime_toString(datebegin)+'-'+datetime_toString(dateend)+"活动费明细.xls")
 print('程序已成功执行，请查看程序文件夹')
