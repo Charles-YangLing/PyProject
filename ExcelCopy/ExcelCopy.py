@@ -96,8 +96,8 @@ Newexcelsheet.write(1, 0, str2,Copyexcel[Copyexcels.cell_xf_index(1, 0)]) #第�
 hang = 3
 while(hang < nrows):
     lie = 3
-    tihaun = shuchuhangliezhi(sheet=Excel_sheet, i=11, j=hang, k=hang + 1)
-    Newexcelsheet.write(hang, lie, tihaun[0], Copyexcel[Copyexcels.cell_xf_index(hang, lie)])
+    tihaun = shuchuhangliezhi(sheet=Excel_sheet, i=11, j=hang, k=hang + 1)#将上周余额替换至本周开始
+    Newexcelsheet.write(hang, 2, tihaun[0], Copyexcel[Copyexcels.cell_xf_index(hang, lie)])
     gongshi = 'SUM(C4,-D4,-E4,-F4,-G4,-H4,-I4,-J4,K4)'.replace('4',str(hang+1))
     Newexcelsheet.write(hang, 11, xlwt.Formula(gongshi),Copyexcel[Copyexcels.cell_xf_index(hang, 11)])
     # Newexcelsheet.write_formula(rows=hang,col= 11, formula=gongshi)
@@ -107,7 +107,9 @@ while(hang < nrows):
     hang += 1
     if hang == nrows:
         gongshi2 = 'SUM(L4: L64)'.replace('64', str(hang-1))
+        gongshi3 = 'SUM(C4: C64)'.replace('64', str(hang-1))
         Newexcelsheet.write(hang-1, 11, xlwt.Formula(gongshi2),Copyexcel[Copyexcels.cell_xf_index(hang-1, 11)])
+        Newexcelsheet.write(hang - 1, 2, xlwt.Formula(gongshi3), Copyexcel[Copyexcels.cell_xf_index(hang - 1, 2)])
 workbook.release_resources()  #关闭模板文件
 Newexcel.save("羽毛球经费周统计表"+datetime_toString(datebegin)+'-'+datetime_toString(dateend)+"活动费明细.xls")
 print('程序已成功执行，请查看程序文件夹')
